@@ -1,0 +1,9 @@
+E:\git\cs_face\cs_face\obj\x86\Debug\cs_face.Form1.resources
+E:\git\cs_face\cs_face\obj\x86\Debug\cs_face.Properties.Resources.resources
+E:\git\cs_face\cs_face\obj\x86\Debug\cs_face.csproj.GenerateResource.Cache
+E:\git\cs_face\cs_face\bin\Debug\cs_face.exe
+E:\git\cs_face\cs_face\bin\Debug\cs_face.pdb
+E:\git\cs_face\cs_face\obj\x86\Debug\cs_face.exe
+E:\git\cs_face\cs_face\obj\x86\Debug\cs_face.pdb
+E:\git\cs_face\cs_face\obj\x86\Debug\cs_face.csprojResolveAssemblyReference.cache
+E:\git\cs_face\cs_face\bin\Debug\HtmlAgilityPack.dll
