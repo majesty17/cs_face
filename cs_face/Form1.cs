@@ -18,6 +18,10 @@ namespace cs_face
         private IntPtr last_for_ptr = IntPtr.Zero;
         private IntPtr myself_ptr = Process.GetCurrentProcess().MainWindowHandle;
 
+
+        private int currentPage = 0;
+        private int currentItemCount = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -56,6 +60,7 @@ namespace cs_face
         //search
         private void button_search_Click(object sender, EventArgs e)
         {
+            currentPage = 1;//置当前页为1
             string keyword = textBox1.Text.Trim();
             if (keyword.Length == 0)
                 return;
@@ -63,7 +68,7 @@ namespace cs_face
             PictureBox[] pics =null;
             try
             {
-                pics = get_pics(keyword);
+                pics = get_pics(keyword,currentPage);
             }
             catch (Exception ex) {
                 MessageBox.Show("图片获取失败||没有搜到！");
@@ -78,7 +83,7 @@ namespace cs_face
                 pics[i].Height = pics[i].Width;
                 
             }
-
+            currentItemCount = pics.Length;
 
  
             return;
@@ -112,10 +117,10 @@ namespace cs_face
 
 
         //下载图片
-        private PictureBox[] get_pics(string keyword)
+        private PictureBox[] get_pics(string keyword,int page)
         {
             WebClient web = new WebClient();
-            string url_k="http://md.itlun.cn/plus/search.php?kwtype=1&searchtype=titlekeyword&q="+UrlEncode(keyword);
+            string url_k = "http://md.itlun.cn/plus/search.php?kwtype=1&searchtype=titlekeyword&q=" + UrlEncode(keyword) + "&PageNo="+page;
             string content = web.DownloadString(url_k);
 
 
@@ -192,5 +197,52 @@ namespace cs_face
             }
             last_for_ptr = now_for_ptr;
         }
+
+
+
+        //last
+        private void button_left_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //next
+        private void button_right_Click(object sender, EventArgs e)
+        {
+            if (currentItemCount < 20) {
+                MessageBox.Show("没有下一页了！");
+                return;
+            }
+
+            currentPage = currentPage + 1;
+            string keyword = textBox1.Text.Trim();
+            if (keyword.Length == 0)
+                return;
+
+            PictureBox[] pics = null;
+            try
+            {
+                pics = get_pics(keyword,currentPage);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("图片获取失败||没有搜到！");
+                return;
+            }
+
+            tableLayoutPanel1.Controls.Clear();
+
+            for (int i = 0; i < pics.Length; i++)
+            {
+
+                tableLayoutPanel1.Controls.Add(pics[i]);
+                pics[i].Height = pics[i].Width;
+
+            }
+            currentItemCount = pics.Length;
+        }
+
+        //
     }
 }

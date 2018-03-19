@@ -36,6 +36,8 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.button_left = new System.Windows.Forms.Button();
+            this.button_right = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_search
@@ -83,18 +85,40 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(257, 383);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(257, 359);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // toolTip1
             // 
             this.toolTip1.AutomaticDelay = 200;
             // 
+            // button_left
+            // 
+            this.button_left.Location = new System.Drawing.Point(0, 389);
+            this.button_left.Name = "button_left";
+            this.button_left.Size = new System.Drawing.Size(32, 25);
+            this.button_left.TabIndex = 3;
+            this.button_left.Text = "<-";
+            this.button_left.UseVisualStyleBackColor = true;
+            this.button_left.Click += new System.EventHandler(this.button_left_Click);
+            // 
+            // button_right
+            // 
+            this.button_right.Location = new System.Drawing.Point(32, 389);
+            this.button_right.Name = "button_right";
+            this.button_right.Size = new System.Drawing.Size(32, 25);
+            this.button_right.TabIndex = 4;
+            this.button_right.Text = "->";
+            this.button_right.UseVisualStyleBackColor = true;
+            this.button_right.Click += new System.EventHandler(this.button_right_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(259, 414);
+            this.Controls.Add(this.button_right);
+            this.Controls.Add(this.button_left);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_search);
@@ -118,6 +142,8 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button button_left;
+        private System.Windows.Forms.Button button_right;
     }
 }
 
