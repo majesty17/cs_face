@@ -31,10 +31,28 @@ namespace cs_face
         private void Form1_Load(object sender, EventArgs e)
         {
             //启动时找hi的句柄
-            Process[] ps = Process.GetProcessesByName("Hi");
+            Process[] ps = Process.GetProcessesByName("infoflow");
             if (ps.Length > 0) {
-                int hi_pid = ps[0].Id;
+                //有多个同名进程的时候，找到第一个窗口标题不为空的
+                int hi_pid = -1;
+                for (int i = 0; i < ps.Length; i++)
+                {
+                    if (ps[i].MainWindowTitle != null && ps[i].MainWindowTitle != "")
+                    {
+                        hi_pid = ps[i].Id;
+                        break;
+                    }
+                }
+
+                if (hi_pid==-1)
+                {
+                    MessageBox.Show("未找到正确的hi窗口!!");
+                    this.Close();
+                }
+
                 hi_ptr = WinAPI.GetMainWindowHandle(hi_pid);
+
+
                 if ((int)hi_ptr != 0)
                 {
                     //开始定时任务
@@ -51,8 +69,6 @@ namespace cs_face
                 this.Close();
             }
             //动态调整grid
-            
-
         }
 
 
@@ -120,19 +136,23 @@ namespace cs_face
         private PictureBox[] get_pics(string keyword,int page)
         {
             WebClient web = new WebClient();
-            string url_k = "http://md.itlun.cn/plus/search.php?kwtype=1&searchtype=titlekeyword&q=" + UrlEncode(keyword) + "&PageNo="+page;
+            //string url_k = "http://md.itlun.cn/plus/search.php?kwtype=1&searchtype=titlekeyword&q=" + UrlEncode(keyword) + "&PageNo="+page;
+            string url_k = "https://www.pkdoutu.com/search?keyword=" + keyword;
             string content = web.DownloadString(url_k);
 
 
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(content);
-            HtmlNodeCollection nodes = doc.DocumentNode.SelectSingleNode("//ul[@class='pic2']").SelectNodes("li|script");
+            HtmlNodeCollection nodes = doc.DocumentNode.SelectSingleNode("//div[@class='random_picture']").SelectNodes("//img[@referrerpolicy='no-referrer']");
 
-            PictureBox[] ret = new PictureBox[nodes.Count/2];
-            for (int i = 0; i < nodes.Count /2; i++) {
-                string name = nodes[i * 2].InnerText;
+
+            int show_count = Math.Min(nodes.Count, 30);
+            PictureBox[] ret = new PictureBox[show_count];
+            for (int i = 0; i < show_count; i++)
+            {
+                string name = nodes[i].InnerText;
                 //string url = nodes[i].SelectSingleNode("/img").InnerHtml;//GetAttributeValue("src", "/");
-                string url = nodes[i * 2 + 1].InnerHtml.Split(new char[] { '"' })[1].Replace("//", "http://");
+                string url = nodes[i].GetAttributeValue("data-original", "/"); //   .InnerHtml.Split(new char[] { '"' })[1].Replace("//", "http://");
 
                 ret[i] = new PictureBox();
                 ret[i].ImageLocation = url;
