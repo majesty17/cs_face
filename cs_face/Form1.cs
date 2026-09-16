@@ -119,7 +119,7 @@ namespace cs_face
             this.WindowState = FormWindowState.Normal;
 
 
-            Console.WriteLine(rec.Right + "," + rec.Top);
+            // Console.WriteLine(rec.Right + "," + rec.Top);
 
             int right = rec.Right;
             int top = rec.Top;
@@ -143,16 +143,19 @@ namespace cs_face
 
             HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
             doc.LoadHtml(content);
-            HtmlNodeCollection nodes = doc.DocumentNode.SelectSingleNode("//div[@class='random_picture']").SelectNodes("//img[@referrerpolicy='no-referrer']");
+            HtmlNodeCollection nodes = doc.DocumentNode.SelectNodes("//div[@class='random_picture']/a[@class='col-xs-6 col-md-2']");
+                //("//img[@referrerpolicy='no-referrer']");
 
 
             int show_count = Math.Min(nodes.Count, 30);
             PictureBox[] ret = new PictureBox[show_count];
             for (int i = 0; i < show_count; i++)
             {
-                string name = nodes[i].InnerText;
+                string name = nodes[i].InnerText.Trim();
                 //string url = nodes[i].SelectSingleNode("/img").InnerHtml;//GetAttributeValue("src", "/");
-                string url = nodes[i].GetAttributeValue("data-original", "/"); //   .InnerHtml.Split(new char[] { '"' })[1].Replace("//", "http://");
+                HtmlNode img_node = nodes[i].SelectSingleNode("img[@referrerpolicy='no-referrer']");
+                string url  = img_node.GetAttributeValue("data-original", "/"); 
+
 
                 ret[i] = new PictureBox();
                 ret[i].ImageLocation = url;
@@ -187,6 +190,8 @@ namespace cs_face
         {
             PictureBox pic = (PictureBox)sender;
             string name = (string)pic.Tag;
+            //MessageBox.Show(name);
+
             toolTip1.ShowAlways = true;
             toolTip1.SetToolTip(pic, name);
 

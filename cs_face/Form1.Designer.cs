@@ -38,13 +38,15 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.button_left = new System.Windows.Forms.Button();
             this.button_right = new System.Windows.Forms.Button();
+            this.label_name = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button_search
             // 
-            this.button_search.Location = new System.Drawing.Point(183, 1);
+            this.button_search.Location = new System.Drawing.Point(244, 1);
+            this.button_search.Margin = new System.Windows.Forms.Padding(4);
             this.button_search.Name = "button_search";
-            this.button_search.Size = new System.Drawing.Size(75, 23);
+            this.button_search.Size = new System.Drawing.Size(100, 29);
             this.button_search.TabIndex = 0;
             this.button_search.Text = "搜索";
             this.button_search.UseVisualStyleBackColor = true;
@@ -52,15 +54,16 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(2, 3);
+            this.textBox1.Location = new System.Drawing.Point(3, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(156, 21);
+            this.textBox1.Size = new System.Drawing.Size(207, 25);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "节操";
             // 
             // timer1
             // 
-            this.timer1.Interval = 20;
+            this.timer1.Interval = 120;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // imageList1
@@ -77,7 +80,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.34F));
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 30);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 38);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -85,7 +89,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(257, 359);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(374, 814);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // toolTip1
@@ -94,9 +98,10 @@
             // 
             // button_left
             // 
-            this.button_left.Location = new System.Drawing.Point(0, 389);
+            this.button_left.Location = new System.Drawing.Point(3, 860);
+            this.button_left.Margin = new System.Windows.Forms.Padding(4);
             this.button_left.Name = "button_left";
-            this.button_left.Size = new System.Drawing.Size(32, 25);
+            this.button_left.Size = new System.Drawing.Size(43, 31);
             this.button_left.TabIndex = 3;
             this.button_left.Text = "<-";
             this.button_left.UseVisualStyleBackColor = true;
@@ -104,25 +109,37 @@
             // 
             // button_right
             // 
-            this.button_right.Location = new System.Drawing.Point(32, 389);
+            this.button_right.Location = new System.Drawing.Point(54, 860);
+            this.button_right.Margin = new System.Windows.Forms.Padding(4);
             this.button_right.Name = "button_right";
-            this.button_right.Size = new System.Drawing.Size(32, 25);
+            this.button_right.Size = new System.Drawing.Size(43, 31);
             this.button_right.TabIndex = 4;
             this.button_right.Text = "->";
             this.button_right.UseVisualStyleBackColor = true;
             this.button_right.Click += new System.EventHandler(this.button_right_Click);
             // 
+            // label_name
+            // 
+            this.label_name.AutoSize = true;
+            this.label_name.Location = new System.Drawing.Point(104, 868);
+            this.label_name.Name = "label_name";
+            this.label_name.Size = new System.Drawing.Size(47, 15);
+            this.label_name.TabIndex = 5;
+            this.label_name.Text = "label";
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(259, 414);
+            this.ClientSize = new System.Drawing.Size(379, 895);
+            this.Controls.Add(this.label_name);
             this.Controls.Add(this.button_right);
             this.Controls.Add(this.button_left);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button_search);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -144,6 +161,7 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button button_left;
         private System.Windows.Forms.Button button_right;
+        private System.Windows.Forms.Label label_name;
     }
 }
 
